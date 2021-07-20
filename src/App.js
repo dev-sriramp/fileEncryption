@@ -10,12 +10,18 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/login" component={LogIn} />
-          <Route exact path="/signup" component={SignUp} />
-        </Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route exact path="/login">
+          <LogIn />
+        </Route>
+        <Route exact path="/signup">
+          <SignUp />
+        </Route>
       </Router>
     </AuthProvider>
   );

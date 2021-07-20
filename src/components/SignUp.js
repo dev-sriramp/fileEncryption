@@ -15,10 +15,13 @@ const SignUp = () => {
     const { email, password } = e.target.elements;
     firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value) 
       .then(()=>{setCurrentUser(true);})
-     .catch(() => {
-      alert("User Already Exists");
+     .catch((err) => {
+       if(err.message === "The email address is badly formatted."){
+          alert(err.message);}
+        else{
+          alert(err.message);
       alreadyUserExists(true);
-    })
+     }})
   };
   const callBack = () => {
 

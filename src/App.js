@@ -10,7 +10,10 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Route exact path="/">
+      <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+        <Route exact path="/home">
           <Home />
         </Route>
         <Route exact path="/dashboard">

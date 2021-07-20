@@ -31,7 +31,7 @@ const LogIn = () => {
   };
   const { currentUser } = useContext(AuthContext);
   if (currentUser) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/Dashboard" />;
   }
   return (
     <>
@@ -40,7 +40,7 @@ const LogIn = () => {
         <FormHeader title="Login" />
         <Form />
         <p>{passwordWrong}</p>
-        <OtherComponents name="Sign Up" link="signup" value="Dont have an account"/>
+        <OtherComponents name="Sign Up" link="Signup" value="Dont have an account"/>
       </div>
       </form>
       

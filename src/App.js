@@ -9,25 +9,26 @@ import { AuthProvider } from "./components/Auth";
 class App extends Component {
   render(){
   return (
-    <Router>
-        <Route exact path="/">
+    <AuthProvider>
+      <Router>
+      <Route exact path="/">
           <Redirect to="/Home" />
-        </Route> 
-        <Route exact path="/login">
-          <LogIn />
-        </Route>
-        <Route exact path="/signup">
-          <SignUp />
-        </Route>
-        <Route exact path="/dashboard">
-          <Dashboard />
         </Route>
         <Route exact path="/Home">
           <Home />
         </Route>
-  </Router>
-  );}
+        <Route exact path="/Dashboard">
+          <Dashboard />
+        </Route>
+        <Route exact path="/Login">
+          <LogIn />
+        </Route>
+        <Route exact path="/Signup">
+          <SignUp />
+        </Route>
+      </Router>
+    </AuthProvider>
+ );}
 }
 
 export default App;
-

@@ -11,11 +11,11 @@ const Home = () => {
       <h1>File Encryption</h1>
       {currentUser ? (
         <p>
-          <Redirect to="/dashboard" />
+          <Redirect to="/Dashboard" />
         </p>
       ) : (
         <p>
-          <Link to="/login">Log In</Link> or <Link to="/signup">Sign Up</Link> 
+          <Link to="/Login">Log In</Link> or <Link to="/Signup">Sign Up</Link> 
         </p>
       )}
     </div>

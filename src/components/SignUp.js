@@ -41,7 +41,7 @@ const SignUp = () => {
       <div id="loginform">
         <FormHeader title="Register" />
         <Form />
-        <OtherComponents name="Login" link="login" value="Already have an account"/>
+        <OtherComponents name="Login" link="Login" value="Already have an account"/>
       </div>
       </form>
     </>

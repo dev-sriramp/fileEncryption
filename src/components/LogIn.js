@@ -1,5 +1,5 @@
 import React, { useContext,useState } from "react";
-import { Redirect} from "react-router-dom";
+import { Redirect,Link} from "react-router-dom";
 import { AuthContext } from "./Auth";
 import firebaseConfig from "../config.js";
 import './css/LogIn.css';
@@ -14,6 +14,8 @@ const Form = props => (
   <div>
     <FormInput description="Email" placeholder="Enter your email" type="email" name="email" />
     <FormInput description="Password" placeholder="Enter your password" type="password" name="password"/>
+    <div className="g-recaptcha" data-sitekey="6LeALqsbAAAAAC8NXLLR916tG2tbTA3ADZsyKwVl"></div>
+      <br/>
     <FormButton title="Log in" type="submit"/>
   </div>
 );
@@ -39,7 +41,11 @@ const LogIn = () => {
       <div id="loginform">
         <FormHeader title="Login" />
         <Form />
-        <p>{passwordWrong}</p>
+        <span className="centerText">
+        <Link className="centerText" to="/Forget">Lost Your Password ?</Link>
+        </span>
+        
+        <p className="centerTextRed">{passwordWrong}</p>
         <OtherComponents name="Sign Up" link="Signup" value="Dont have an account"/>
       </div>
       </form>

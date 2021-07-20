@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
+import ForgetPassword from "./components/ForgetPassword"
 import { AuthProvider } from "./components/Auth";
 
 class App extends Component {
@@ -25,6 +26,9 @@ class App extends Component {
         </Route>
         <Route exact path="/Signup">
           <SignUp />
+        </Route>
+        <Route exact path="/Forget">
+          <ForgetPassword />
         </Route>
       </Router>
     </AuthProvider>

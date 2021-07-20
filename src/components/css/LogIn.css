@@ -94,26 +94,6 @@ html{
   padding-bottom: 1.5rem;
 }
 
-#facebookIcon{
-  background-image:      url("https://image.flaticon.com/icons/svg/145/145802.svg");
-  background-repeat: no-repeat;
-  width: 3rem;
-  height: 3rem;
-}
-
-#twitterIcon{
-  background-image: url("https://image.flaticon.com/icons/svg/145/145812.svg");
-  background-repeat: no-repeat;
-  width: 3rem;
-  height: 3rem;
-}
-
-#googleIcon{
-  background-image: url("https://image.flaticon.com/icons/svg/145/145804.svg");
-  background-repeat: no-repeat;
-  width: 3rem;
-  height: 3rem;
-}
 
 #iconGroup{
   display: flex;
@@ -125,13 +105,15 @@ html{
   margin: 0 0.6rem;
 }
 
-#alternativeLogin {
+.alternativeLogin {
    text-align: center;
    padding-top: 2rem;
    margin-top: 1.5rem;
 }
-p{
-    text-align: center;
+.centerText{ 
+}
+.centerTextRed{
+  text-align: center;
     color: #ff0000;
 }
 

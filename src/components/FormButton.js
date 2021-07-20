@@ -3,7 +3,7 @@ import React from 'react';
 const FormButton = (props) =>{
    return(
     <div id="button" className="row">
-    <button type={props.type}>{props.title} </button>
+    <button type={props.type} disabled={props.captcha} >{props.title} </button>
   </div> 
 
 )};

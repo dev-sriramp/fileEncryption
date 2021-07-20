@@ -110,11 +110,13 @@ html{
    padding-top: 2rem;
    margin-top: 1.5rem;
 }
-.centerText{ 
-}
+
 .centerTextRed{
   text-align: center;
     color: #ff0000;
+}
+.centerText{
+  text-align: center;
 }
 
 

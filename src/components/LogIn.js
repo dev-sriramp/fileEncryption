@@ -15,9 +15,9 @@ const FormHeader = props => (
 
 const Form = props => (
   <div>
+    {/* <FormInput description="Name" placeholder="Enter your Name" type="name" name="name" /> */}
     <FormInput description="Email" placeholder="Enter your email" type="email" name="email" />
     <FormInput description="Password" placeholder="Enter your password" type="password" name="password" />
-
     <FormButton title="Log in" type="submit" captcha={props.value} />
   </div>
 );
@@ -50,7 +50,7 @@ const LogIn = () => {
     return <Redirect to="/Dashboard" />;
   }
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
         <div id="loginform">
           <FormHeader title="Login" />
@@ -69,7 +69,7 @@ const LogIn = () => {
         </div>
       </form>
 
-    </>
+    </div>
   );
 };
 

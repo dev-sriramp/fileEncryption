@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
 import { Redirect } from "react-router-dom";
 import firebaseConfig from "../config";
 import Recaptcha from "react-recaptcha";
 import FormInput from "./FormInput";
+import { AuthContext } from "./Auth";
 import FormButton from "./FormButton";
 import OtherComponents from "./OtherComponents";
 
@@ -14,7 +15,15 @@ const SignUp = () => {
     e.preventDefault();    
     const { email, password } = e.target.elements;
     firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value) 
-      .then(()=>{setCurrentUser(true);})
+      .then((userCredential)=>{      
+        userCredential.user.sendEmailVerification().then(()=>{
+          firebaseConfig.auth().signOut();
+          alert("Verification Email is send");
+        }).catch(()=>{
+         
+          alert("Try after some time")
+        })
+      })
      .catch((err) => {
        if(err.message === "The email address is badly formatted."){
           alert(err.message);}
@@ -33,7 +42,8 @@ const SignUp = () => {
     }
     
   }
-  if (currentUser) {
+  const { currentUserLogin } = useContext(AuthContext);
+  if (currentUser || currentUserLogin) {
       return <Redirect to="/dashboard" />;
   }
   if (userExists) {
@@ -51,7 +61,7 @@ const SignUp = () => {
   );
   
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
       <div id="loginform">
         <FormHeader title="Register" />
@@ -65,7 +75,7 @@ const SignUp = () => {
         <OtherComponents name="Login" link="Login" value="Already have an account"/>
       </div>
       </form>
-    </>
+    </div>
   );
 };
 

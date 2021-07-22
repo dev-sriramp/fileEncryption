@@ -33,14 +33,14 @@ const ForgetPassword = () =>{
     return <Redirect to="/Dashboard" />;
   }
       return (
-          <>
+          <div>
           <form onSubmit={handleSubmit}>
           <div id="loginform">
         <FormHeader title="Reset Password" />
         <Form />
       </div>
           </form>
-          </>
+          </div>
       );
 
 }

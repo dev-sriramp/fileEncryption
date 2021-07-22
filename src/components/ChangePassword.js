@@ -55,14 +55,14 @@ const ChangePassword = () => {
     return <Redirect to="/Login" />;
   }
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
         <div id="loginform">
           <FormHeader title="Change Password" />
           <Form />
         </div>
       </form>
-    </>
+    </div>
   );
 
 }

@@ -9,7 +9,7 @@ import OtherComponents from "./OtherComponents";
 
 const SignUp = () => {
   const [captcha, setcaptcha] = useState(true);
-  const [currentUser, setCurrentUser] = useState(null); 
+  const [currentUser] = useState(null); 
   const [userExists, alreadyUserExists] = useState(null);    
   const handleSubmit = (e) => {
     e.preventDefault();    

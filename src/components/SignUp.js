@@ -1,23 +1,69 @@
 import React, {useState,useContext} from "react";
 import { Redirect } from "react-router-dom";
-import firebaseConfig from "../config";
 import Recaptcha from "react-recaptcha";
 import FormInput from "./FormInput";
-import { AuthContext } from "./Auth";
 import FormButton from "./FormButton";
 import OtherComponents from "./OtherComponents";
+import { AuthContext } from "./Auth";
+import firebaseConfig from "../config.js";
+import {FireBase} from "../config.js";
 
 const SignUp = () => {
   const [captcha, setcaptcha] = useState(true);
-  const [currentUser] = useState(null); 
-  const [userExists, alreadyUserExists] = useState(null);    
+  const [userExists, alreadyUserExists] = useState(null);
+  const [now, setNow] = useState(true);   
   const handleSubmit = (e) => {
-    e.preventDefault();    
+    e.preventDefault();
+
     const { email, password } = e.target.elements;
+    // FireBase.collection("ContactMe")
+    // .add({
+    //   Name: email.value,
+    //   Email: password.value,
+    // }).then(()=>{
+    //   alert("user in")
+      // firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value) 
+    //   .then((userCredential)=>{
+    //     FireBase.collection("ContactMe")
+    //   .add({
+    //     Name: email.value,
+    //     Email: password.value,
+    //   }).then(()=>{
+    //     alert("user in")
+    //   }).catch(()=>{
+    //     alert("not")
+    //   })
+    //     firebaseConfig.auth().signOut();   
+    //     userCredential.user.sendEmailVerification().then(()=>{
+    //       // firebaseConfig.auth().signOut();
+    //       alert("Verification Email is send");
+    //     }).catch(()=>{
+         
+    //       alert("Try after some time")
+    //     })
+    //   })
+    //  .catch((err) => {
+    //    if(err.message === "The email address is badly formatted."){
+    //       alert(err.message);}
+    //     else{
+    //       alert(err.message);
+    //   alreadyUserExists(true);
+    //  }})
+    // }).catch(()=>{
+    //   alert("not")
+    // })
     firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value) 
-      .then((userCredential)=>{      
+      .then((userCredential)=>{
+        setNow(false);
+        FireBase.collection("users")
+      .doc(userCredential.user.uid).set({
+        Email: email.value,
+        password: password.value,
+      }).then(()=>{
+        alert("user in");
+        firebaseConfig.auth().signOut();   
         userCredential.user.sendEmailVerification().then(()=>{
-          firebaseConfig.auth().signOut();
+          // firebaseConfig.auth().signOut();
           alert("Verification Email is send");
         }).catch(()=>{
          
@@ -31,6 +77,25 @@ const SignUp = () => {
           alert(err.message);
       alreadyUserExists(true);
      }})
+      }).catch(()=>{
+        alert("not")
+      })
+    //     firebaseConfig.auth().signOut();   
+    //     userCredential.user.sendEmailVerification().then(()=>{
+    //       // firebaseConfig.auth().signOut();
+    //       alert("Verification Email is send");
+    //     }).catch(()=>{
+         
+    //       alert("Try after some time")
+    //     })
+    //   })
+    //  .catch((err) => {
+    //    if(err.message === "The email address is badly formatted."){
+    //       alert(err.message);}
+    //     else{
+    //       alert(err.message);
+    //   alreadyUserExists(true);
+    //  }})
   };
   const callBack = () => {
 
@@ -42,12 +107,13 @@ const SignUp = () => {
     }
     
   }
-  const { currentUserLogin } = useContext(AuthContext);
-  if (currentUser || currentUserLogin) {
-      return <Redirect to="/dashboard" />;
+  const { currentUser } = useContext(AuthContext);
+  if (currentUser) {
+    if(now)
+    return <Redirect to="/Dashboard" />;
   }
   if (userExists) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/Login" />;
 }
   const FormHeader = props => (
     <h2 id="headerTitle">{props.title}</h2>

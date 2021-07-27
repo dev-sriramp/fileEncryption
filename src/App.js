@@ -1,12 +1,14 @@
 import React,{Component} from "react";
 import { BrowserRouter as Router, Route,Redirect } from "react-router-dom";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import ForgetPassword from "./components/ForgetPassword";
 import ChangePassword from "./components/ChangePassword";
+import List from "./components/List";
 import { AuthProvider } from "./components/Auth";
+import "./App.css";
 
 class App extends Component {
   render(){
@@ -17,7 +19,7 @@ class App extends Component {
           <Redirect to="/Home" />
         </Route>
         <Route exact path="/Home">
-          <Home />
+          <LogIn />
         </Route>
         <Route exact path="/Dashboard">
           <Dashboard />
@@ -33,6 +35,9 @@ class App extends Component {
         </Route>
         <Route exact path="/Change">
           <ChangePassword />
+        </Route>
+        <Route exact path="/List">
+          <List />
         </Route>
       </Router>
     </AuthProvider>

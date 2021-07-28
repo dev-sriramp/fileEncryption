@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect,Link } from "react-router-dom";
 import FormInput from './FormInput';
 import FormButton from "./FormButton";
 import { AuthContext } from "./Auth";
@@ -56,6 +56,7 @@ const ChangePassword = () => {
   }
   return (
     <div>
+       <Link to="/Dashboard" className="btn btn-primary btn-lg active mt-3 mx-3" role="button" aria-pressed="true">Back</Link>
       <form onSubmit={handleSubmit}>
         <div id="loginform">
           <FormHeader title="Change Password" />

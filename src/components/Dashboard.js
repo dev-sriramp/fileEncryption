@@ -12,13 +12,16 @@ const Dashboard = () => {
   const [download, setDownload] = useState(null);
   const [type,setType] = useState("Encrypt");
   const { currentUser } = useContext(AuthContext);
-  const [change,setchange] = useState(false);
+  const [change,setchange] = useState(0);
   const [wrong,setWrong] = useState(null);
   if (!currentUser) {
     return <Redirect to="/Login" />;
   }
-  if(change){
+  if(change ==1){
     return <Redirect to="/Change" />;
+  }
+  else if(change == 2){
+    return <Redirect to="/List" />;
   }
   const FormHeader = props => (
     <h2 id="headerTitle">{props.title}</h2>
@@ -120,9 +123,10 @@ const Dashboard = () => {
 
   return (
     <div>
-      <center><h1>File Encryption</h1></center>
+      <center><h1 className="text-white">File Encryption</h1></center>
       <button className="btn btn-danger float-end mt-0 mx-2" onClick={() => firebaseConfig.auth().signOut()}>Sign out</button><br /><br />
-      <button className="btn btn-danger float-end mt-0 mx-2" onClick={(e) =>{setchange(true)}}>ChangePassword</button>
+      <button className="btn btn-danger float-end mt-0 mx-2" onClick={(e) =>{setchange(1)}}>ChangePassword</button>
+      <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{setchange(2)}}>Show List</button>
       <div>
         <form onSubmit={handleSubmit}>
           <div id="loginform">
@@ -136,10 +140,7 @@ const Dashboard = () => {
             </center>
           </div>
         </form>
-        {/* <input type="file" className="input-file" name="imgUpload" onClick={(e) => { setnooftime('1'); setInserted(null) }} onChange={dec} />
-        <a id="aEncsavefile" href={hrefOfFile3} download={hrefOfFile4}>Save Decrypted File</a> */}
-      </div><br />
-      <h3><Link to="/List">Show List</Link></h3>
+      </div>
     </div>
   );
 };

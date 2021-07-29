@@ -2,7 +2,7 @@ import { FireBase } from '../config';
 import { useState, useContext } from 'react';
 import { AuthContext } from "./Auth";
 import { Redirect, Link } from "react-router-dom";
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import './css/Link.css';
 
 
 const Read = () => {
@@ -36,17 +36,27 @@ const Read = () => {
       <center>
         <h2 className="text-white">LIST OF FILES</h2>
       </center>
-      <MDBTable hover responsive>
-        <MDBTableHead>
-          <tr className="text-white">
-            <th scope='col'>#ID</th>
-            <th scope='col'>TYPE</th>
-            <th scope='col'>FILENAME</th>
-            <th scope='col'>DATE and TIME</th>
-          </tr>
-        </MDBTableHead>
-        <MDBTableBody>
-          {
+      <div className="Limiter">
+		<div className="container-table100">
+			<div className="wrap-table100">
+					<div className="Table">
+
+						<div className="Row Header">
+							<div className="Cell">
+								#id
+							</div>
+							<div className="Cell">
+								Type
+							</div>
+							<div className="Cell">
+								Filename
+							</div>
+							<div className="Cell">
+								Date and Time
+							</div>
+						</div>
+						
+					{
             info.map((data) => (
               <Frame course={data.filename}
                 name={data.id}
@@ -54,20 +64,30 @@ const Read = () => {
                 time={data.time} />
             ))
           }
-        </MDBTableBody>
-      </MDBTable>
+					</div>
+			</div>
+		</div>
+	</div>
     </div>
   );
 }
 
 const Frame = ({ course, name, age, time }) => {
   return (
-    <tr className="text-white" key={name}>
-      <td> {name}</td>
-      <td> {age}</td>
-      <td> {course}</td>
-      <td> {time}</td>
-    </tr>
+    <div className="Row">
+							<div className="Cell" data-title="#id">
+								{name}
+							</div>
+							<div className="Cell" data-title="Type">
+								{age}
+							</div>
+							<div className="Cell" data-title="Filename">
+								{course}
+							</div>
+							<div className="Cell" data-title="Date and Time">
+								{time}
+							</div>
+						</div>
   );
 }
 

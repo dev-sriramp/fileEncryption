@@ -8,6 +8,18 @@ import { AuthContext } from "./Auth";
 import firebaseConfig from "../config.js";
 import {FireBase} from "../config.js";
 
+const FormHeader = props => (
+  <h2 id="headerTitle">{props.title}</h2>
+);
+
+const Form = props => (
+  <div>
+    <FormInput description="Email" placeholder="Enter your email" type="email" name="email" />
+    <FormInput description="Password" placeholder="Enter your password" type="password" name="password"/>
+    <FormButton title="Sign Up" type="submit" captcha={props.value}/>
+  </div>
+);
+
 const SignUp = () => {
   const [captcha, setcaptcha] = useState(true);
   const [userExists, alreadyUserExists] = useState(null);
@@ -16,42 +28,7 @@ const SignUp = () => {
     e.preventDefault();
 
     const { email, password } = e.target.elements;
-    // FireBase.collection("ContactMe")
-    // .add({
-    //   Name: email.value,
-    //   Email: password.value,
-    // }).then(()=>{
-    //   alert("user in")
-      // firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value) 
-    //   .then((userCredential)=>{
-    //     FireBase.collection("ContactMe")
-    //   .add({
-    //     Name: email.value,
-    //     Email: password.value,
-    //   }).then(()=>{
-    //     alert("user in")
-    //   }).catch(()=>{
-    //     alert("not")
-    //   })
-    //     firebaseConfig.auth().signOut();   
-    //     userCredential.user.sendEmailVerification().then(()=>{
-    //       // firebaseConfig.auth().signOut();
-    //       alert("Verification Email is send");
-    //     }).catch(()=>{
-         
-    //       alert("Try after some time")
-    //     })
-    //   })
-    //  .catch((err) => {
-    //    if(err.message === "The email address is badly formatted."){
-    //       alert(err.message);}
-    //     else{
-    //       alert(err.message);
-    //   alreadyUserExists(true);
-    //  }})
-    // }).catch(()=>{
-    //   alert("not")
-    // })
+
     firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value) 
       .then((userCredential)=>{
         setNow(false);
@@ -60,10 +37,8 @@ const SignUp = () => {
         Email: email.value,
         password: password.value,
       }).then(()=>{
-        alert("user in");
         firebaseConfig.auth().signOut();   
         userCredential.user.sendEmailVerification().then(()=>{
-          // firebaseConfig.auth().signOut();
           alert("Verification Email is send");
         }).catch(()=>{
          
@@ -77,25 +52,10 @@ const SignUp = () => {
           alert(err.message);
       alreadyUserExists(true);
      }})
-      }).catch(()=>{
-        alert("not")
+      }).catch((e)=>{
+        alert(e.message);
+        alreadyUserExists(true)
       })
-    //     firebaseConfig.auth().signOut();   
-    //     userCredential.user.sendEmailVerification().then(()=>{
-    //       // firebaseConfig.auth().signOut();
-    //       alert("Verification Email is send");
-    //     }).catch(()=>{
-         
-    //       alert("Try after some time")
-    //     })
-    //   })
-    //  .catch((err) => {
-    //    if(err.message === "The email address is badly formatted."){
-    //       alert(err.message);}
-    //     else{
-    //       alert(err.message);
-    //   alreadyUserExists(true);
-    //  }})
   };
   const callBack = () => {
 
@@ -115,16 +75,7 @@ const SignUp = () => {
   if (userExists) {
     return <Redirect to="/Login" />;
 }
-  const FormHeader = props => (
-    <h2 id="headerTitle">{props.title}</h2>
-  );
-  const Form = props => (
-    <div>
-      <FormInput description="Email" placeholder="Enter your email" type="email" name="email" />
-      <FormInput description="Password" placeholder="Enter your password" type="password" name="password"/>
-      <FormButton title="Sign Up" type="submit" captcha={props.value}/>
-    </div>
-  );
+  
   
   return (
     <div>

@@ -11,13 +11,26 @@ const FormHeader = (props) => (
   <h2 id="headerTitle">{props.title}</h2>
 );
 
-const Form = (props) => (
-  <div>
-    <FormInput description="Old Password" placeholder="Enter Old Password" type="password" name="OldPassword" />
-    <FormInput description="New Password" placeholder="Enter New Password" type="password" name="NewPassword" />
+const Form = (props) => {
+  const [showpasswordtype, setpasswordtype] = useState("password");
+ return(
+ <div>
+    <FormInput description="Old Password" placeholder="Enter Old Password" type={showpasswordtype} name="OldPassword" />
+    <FormInput description="New Password" placeholder="Enter New Password" type={showpasswordtype} name="NewPassword" />
+    <div className="float-end mx-5">
+        <input type="checkbox" onClick={(e) => {
+          if (showpasswordtype === "password") {
+            setpasswordtype("text");
+          }
+          else if (showpasswordtype === "text") {
+            setpasswordtype("password");
+          }
+        }}
+        />Show Password</div>
+      <br />
     <FormButton title="Change Password" type="submit" />
   </div>
-)
+ )}
 const ReAuthenticate = (props) => {
   var user = firebaseConfig.auth().currentUser;
   const email = user.email;

@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect, } from "react-router-dom";
 import { AuthContext } from "./Auth";
 import firebaseConfig, { FireBase } from "../config.js";
 import FormInput from "./FormInput";
 import FormButton from "./FormButton";
 let CryptoJS = require("crypto-js");
-
+const linkToLargeFile = "https://github.com/uniqueredhat/File-Encryption/releases";
 
 const Dashboard = () => {
   const [hrefOfFile, setHrefOfFile] = useState(null);
@@ -14,13 +14,14 @@ const Dashboard = () => {
   const { currentUser } = useContext(AuthContext);
   const [change,setchange] = useState(0);
   const [wrong,setWrong] = useState(null);
+  const [high ,setHigh] = useState(false);
   if (!currentUser) {
     return <Redirect to="/Login" />;
   }
-  if(change ==1){
+  if(change === 1){
     return <Redirect to="/Change" />;
   }
-  else if(change == 2){
+  else if(change === 2){
     return <Redirect to="/List" />;
   }
   const FormHeader = props => (
@@ -44,7 +45,9 @@ const Dashboard = () => {
     
   }
 
-  const Form = props => (
+  const Form = props => {
+    const [showpasswordtype, setpasswordtype] = useState("password");
+    return(
     <div>
       <center>
         <div className="upload-btn-wrapper">
@@ -52,11 +55,22 @@ const Dashboard = () => {
           <input type="file" name="file" />
         </div>
       </center>
-      <FormInput description="Password" placeholder="Enter your password" type="password" name="password" />
+      <FormInput description="Password" placeholder="Enter your password" type={showpasswordtype} name="password" />
+      <div className="float-end mx-5">
+        <input type="checkbox" onClick={(e) => {
+          if (showpasswordtype === "password") {
+            setpasswordtype("text");
+          }
+          else if (showpasswordtype === "text") {
+            setpasswordtype("password");
+          }
+        }}
+        />Show Password</div>
+      <br />
       <FormButton title={type} type="submit" />
 
     </div>
-  );
+    )};
 
   const handleSubmit = (e) => {
     if(type === "Encrypt"){
@@ -81,6 +95,7 @@ const Dashboard = () => {
     }
     else {
       alert('Please choose files smaller than 2mb.\n otherwise you may crash your browser.');
+      setHigh(true);
     }}
     catch{
       setWrong("check inputs");
@@ -113,6 +128,7 @@ const Dashboard = () => {
   }
     else {
       alert('Please choose files smaller than 2mb.\n otherwise you may crash your browser.');
+setHigh(true);
     }}
     catch{
       setWrong("check inputs");
@@ -140,7 +156,14 @@ const Dashboard = () => {
             </center>
           </div>
         </form>
+        <center>
+        {high &&
+<h3 className="text-white">
+Download Our Desktop Application to process <a href={linkToLargeFile} target="_blank" rel="noreferrer">Large Files</a> 
+</h3>
+}</center>
       </div>
+     
     </div>
   );
 };

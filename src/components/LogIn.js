@@ -4,33 +4,46 @@ import { AuthContext } from "./Auth";
 import firebaseConfig from "../config.js";
 import Recaptcha from "react-recaptcha";
 import './css/LogIn.css';
-import FormInput from "./FormInput";
-import FormButton from "./FormButton";
+// import FormInput from "./FormInput";
+import FormButton, { FormInput,FormHeader } from "./FormButton";
 import OtherComponents from "./OtherComponents";
 
-
-const FormHeader = props => (
-  <h2 id="headerTitle">{props.title}</h2>
-);
-
-const Form = props => (
-  <div>
-    {/* <FormInput description="Name" placeholder="Enter your Name" type="name" name="name" /> */}
-    <FormInput description="Email" placeholder="Enter your email" type="email" name="email" />
-    <FormInput description="Password" placeholder="Enter your password" type="password" name="password" />
-    <FormButton title="Log in" type="submit" captcha={props.value} />
-  </div>
-);
+const Form = () => {
+  const [showpasswordtype, setpasswordtype] = useState("password");
+  return (
+    <div>
+      <FormInput description="Email" placeholder="Enter your email" type="email" name="email" />
+      <FormInput description="Password" placeholder="Enter your password" type={showpasswordtype} name="password" />
+      <div className="float-end mx-5">
+        <input type="checkbox" onClick={(e) => {
+          if (showpasswordtype === "password") {
+            setpasswordtype("text");
+          }
+          else if (showpasswordtype === "text") {
+            setpasswordtype("password");
+          }
+        }}
+        />Show Password</div>
+      <br />
+      <FormButton title="Log in" type="submit" />
+    </div>)
+};
 const LogIn = () => {
+
   const [passwordWrong, setpasswordWrong] = useState(null);
-  const [captcha, setcaptcha] = useState(true);
+  const [captcha, setcaptcha] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = e.target.elements;
-    firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value)
-      .catch(error => {
-        setpasswordWrong("Check email or password");
-      })
+    if (captcha) {
+      const { email, password } = e.target.elements;
+      firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value)
+        .catch(error => {
+          setpasswordWrong("Check email or password");
+        })
+    }
+    else {
+      setpasswordWrong("Check Captcha");
+    }
 
   };
   const callBack = () => {
@@ -39,7 +52,7 @@ const LogIn = () => {
 
   const verifyBack = (response) => {
     if (response) {
-      setcaptcha(false);
+      setcaptcha(true);
     }
     else {
       setpasswordWrong("Check Captcha");
@@ -54,13 +67,13 @@ const LogIn = () => {
       <form onSubmit={handleSubmit}>
         <div id="loginform">
           <FormHeader title="Login" />
-          <Form value={captcha} />
-            <Recaptcha
-              sitekey="6LeALqsbAAAAAC8NXLLR916tG2tbTA3ADZsyKwVl"
-              render="explicit"
-              onloadCallback={callBack}
-              verifyCallback={verifyBack}
-            />
+          <Form />
+          <Recaptcha
+            sitekey="6LeALqsbAAAAAC8NXLLR916tG2tbTA3ADZsyKwVl"
+            render="explicit"
+            onloadCallback={callBack}
+            verifyCallback={verifyBack}
+          />
           <p className="centerText">
             <Link to="/Forget">Lost Your Password ?</Link>
           </p>

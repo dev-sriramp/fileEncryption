@@ -151,6 +151,9 @@ setHigh(true);
             <FormHeader title={type} />
             <Form />
             <center>
+                If you want an manual you can download it by <button onClick={() => window.open('https://drive.google.com/uc?export=download&id=1AbhkZCuBuJLiwYwSbNxyL-L0Ub-hqBej')} >Click on it!</button>
+            </center>
+            <center>
             <p className="text-danger">{wrong}</p>
             <a id="aEncsavefile" href={hrefOfFile} download={download}>Save {type}ed File</a>
             </center>

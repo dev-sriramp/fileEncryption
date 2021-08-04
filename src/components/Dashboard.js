@@ -143,7 +143,7 @@ setHigh(true);
       <button className="btn btn-danger float-end mt-0 mx-2" onClick={() => firebaseConfig.auth().signOut()}>Sign out</button><br /><br />
       <button className="btn btn-danger float-end mt-0 mx-2" onClick={(e) =>{setchange(1)}}>ChangePassword</button>
       <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{setchange(2)}}>Show List</button>
-<button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{window.open('https://drive.google.com/uc?export=download&id=1AbhkZCuBuJLiwYwSbNxyL-L0Ub-hqBej')}>Manual</button>
+      <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{window.open('https://drive.google.com/uc?export=download&id=1AbhkZCuBuJLiwYwSbNxyL-L0Ub-hqBej')}}>Manual</button>
       <div>
         <form onSubmit={handleSubmit}>
           <div id="loginform">
@@ -157,9 +157,6 @@ setHigh(true);
             </center>
           </div>
         </form>
-   
- 
-
         <center>
         {high &&
 <h3 className="text-white">

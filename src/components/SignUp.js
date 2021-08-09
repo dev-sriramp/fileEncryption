@@ -111,7 +111,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{window.open(manual)}}>Manual</button>
+      
       <form onSubmit={handleSubmit}>
         <div id="loginform">
           <FormHeader title="Register" />
@@ -139,6 +139,7 @@ const SignUp = () => {
           <OtherComponents name="Login" link="Login" value="Already have an account" />
         </div>
       </form>
+      <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{window.open(manual)}}>Manual</button>
     </div>
   );
 };

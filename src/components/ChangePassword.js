@@ -1,15 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Redirect,Link } from "react-router-dom";
-import FormInput from './FormInput';
-import FormButton from "./FormButton";
+import FormButton,{FormInput,FormHeader} from "./FormButton";
 import { AuthContext } from "./Auth";
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from "../config.js";
 
-const FormHeader = (props) => (
-  <h2 id="headerTitle">{props.title}</h2>
-);
 
 const Form = (props) => {
   const [showpasswordtype, setpasswordtype] = useState("password");

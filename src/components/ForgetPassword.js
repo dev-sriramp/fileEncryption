@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { Redirect} from "react-router-dom";
-import FormInput from './FormInput';
-import FormButton from "./FormButton";
+
+import FormButton,{FormInput,FormHeader} from "./FormButton";
 import { AuthContext } from "./Auth";
 import firebaseConfig from "../config.js";
 
-const FormHeader = (props) => (
-    <h2 id="headerTitle">{props.title}</h2>
-  );
+
 
 const Form = (props) =>(
 <div>

@@ -5,8 +5,8 @@ import firebaseConfig from "../config.js";
 import Recaptcha from "react-recaptcha";
 import './css/LogIn.css';
 // import FormInput from "./FormInput";
-import FormButton, { FormInput,FormHeader } from "./FormButton";
-import OtherComponents from "./OtherComponents";
+import FormButton, { FormInput,FormHeader,OtherComponents } from "./FormButton";
+
 
 const Form = () => {
   const [showpasswordtype, setpasswordtype] = useState("password");

@@ -7,6 +7,7 @@ import SignUp from "./components/SignUp";
 import ForgetPassword from "./components/ForgetPassword";
 import ChangePassword from "./components/ChangePassword";
 import List from "./components/List";
+import TermsAndCondition from "./components/TermsAndCondition";
 import { AuthProvider } from "./components/Auth";
 import "./App.css";
 
@@ -38,6 +39,9 @@ class App extends Component {
         </Route>
         <Route exact path="/List">
           <List />
+        </Route>
+        <Route exact path="/T&C">
+          <TermsAndCondition/>
         </Route>
       </Router>
     </AuthProvider>

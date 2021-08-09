@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Recaptcha from "react-recaptcha";
-import FormButton, { FormInput,FormHeader } from "./FormButton";
-import OtherComponents from "./OtherComponents";
+import FormButton, { FormInput,FormHeader,OtherComponents } from "./FormButton";
 import { AuthContext } from "./Auth";
 import firebaseConfig from "../config.js";
 import { FireBase } from "../config.js";
@@ -35,10 +34,12 @@ const SignUp = () => {
   const [userExists, alreadyUserExists] = useState(null);
   const [captchaWrong, setCaptchaWrong] = useState(null);
   const [now, setNow] = useState(true);
+  const [TermsAndCondition, setTermsAndCondition] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(TermsAndCondition){
     if (captcha) {
       const { email, password } = e.target.elements;
       firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value)
@@ -81,6 +82,9 @@ const SignUp = () => {
     }
     else {
       setCaptchaWrong("Check Captcha");
+    }}
+    else{
+      setCaptchaWrong("Agree Terms andCondition.");
     }
   };
   const callBack = () => {
@@ -119,6 +123,18 @@ const SignUp = () => {
             verifyCallback={verifyBack}
           /></center>
           <p className="centerTextRed">{captchaWrong}</p>
+          <center>
+          <input type="checkbox" onClick={(e) => {
+            if(TermsAndCondition){
+              setTermsAndCondition(null);
+            }
+            else{
+              setTermsAndCondition(true);
+            }
+            
+          }}
+        />By signing you Agree to our <Link to="T&C">Terms and conditions</Link></center>
+      
           <OtherComponents name="Login" link="Login" value="Already have an account" />
         </div>
       </form>

@@ -5,7 +5,7 @@ import FormButton, { FormInput,FormHeader,OtherComponents } from "./FormButton";
 import { AuthContext } from "./Auth";
 import firebaseConfig from "../config.js";
 import { FireBase } from "../config.js";
-
+const manual = "https://raw.githubusercontent.com/uniqueredhat/File-Encryption/main/manual.pdf";
 
 const Form = props => {
   const [showpasswordtype, setpasswordtype] = useState("password");
@@ -111,6 +111,7 @@ const SignUp = () => {
 
   return (
     <div>
+      <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{window.open(manual)}}>Manual</button>
       <form onSubmit={handleSubmit}>
         <div id="loginform">
           <FormHeader title="Register" />

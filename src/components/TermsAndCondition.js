@@ -37,7 +37,7 @@ const TermsAndCondition = (props) => {
                         <p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
                     </li>
                     <li>
-                        <p><strong>Website</strong> refers to File Encryption, accessible from <a href="http://fileencryption.netlify.app" rel="noreferrer" target="_blank">http://fileencryption.netlify.app</a></p>
+                        <p><strong>Website</strong> refers to File Encryption, accessible from <a href="http://fileencryption.netlify.app" rel="noreferrer external" target="_blank">http://fileencryption.netlify.app</a></p>
                     </li>
                     <li>
                         <p><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>

@@ -111,12 +111,13 @@ const SignUp = () => {
         <div id="loginform">
           <FormHeader title="Register" />
           <Form />
+          <center>
           <Recaptcha
             sitekey="6LeALqsbAAAAAC8NXLLR916tG2tbTA3ADZsyKwVl"
             render="explicit"
             onloadCallback={callBack}
             verifyCallback={verifyBack}
-          />
+          /></center>
           <p className="centerTextRed">{captchaWrong}</p>
           <OtherComponents name="Login" link="Login" value="Already have an account" />
         </div>

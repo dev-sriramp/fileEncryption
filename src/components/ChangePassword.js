@@ -41,6 +41,7 @@ const ReAuthenticate = (props) => {
   return user.reauthenticateWithCredential(cred);
 }
 const ChangePassword = () => {
+
   const [pass, updatedpassword] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,6 +61,7 @@ const ChangePassword = () => {
     })
 
   };
+
   const { currentUser } = useContext(AuthContext);
   if (pass) {
     return <Redirect to="/Dashboard" />;
@@ -76,6 +78,7 @@ const ChangePassword = () => {
           <Form />
         </div>
       </form>
+      
     </div>
   );
 

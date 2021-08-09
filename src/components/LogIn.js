@@ -68,12 +68,13 @@ const LogIn = () => {
         <div id="loginform">
           <FormHeader title="Login" />
           <Form />
+          <center>
           <Recaptcha
             sitekey="6LeALqsbAAAAAC8NXLLR916tG2tbTA3ADZsyKwVl"
             render="explicit"
             onloadCallback={callBack}
             verifyCallback={verifyBack}
-          />
+          /></center>
           <p className="centerText">
             <Link to="/Forget">Lost Your Password ?</Link>
           </p>

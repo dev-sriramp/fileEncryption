@@ -6,15 +6,18 @@ import FormInput from "./FormInput";
 import FormButton from "./FormButton";
 let CryptoJS = require("crypto-js");
 const linkToLargeFile = "https://github.com/uniqueredhat/File-Encryption/releases";
+const manual = "https://raw.githubusercontent.com/uniqueredhat/File-Encryption/main/manual.pdf";
 
 const Dashboard = () => {
   const [hrefOfFile, setHrefOfFile] = useState(null);
   const [download, setDownload] = useState(null);
   const [type,setType] = useState("Encrypt");
   const { currentUser } = useContext(AuthContext);
+
   const [change,setchange] = useState(0);
   const [wrong,setWrong] = useState(null);
   const [high ,setHigh] = useState(false);
+
   if (!currentUser) {
     return <Redirect to="/Login" />;
   }
@@ -24,6 +27,7 @@ const Dashboard = () => {
   else if(change === 2){
     return <Redirect to="/List" />;
   }
+  console.log(currentUser);
   const FormHeader = props => (
     <h2 id="headerTitle">{props.title}</h2>
   );
@@ -42,7 +46,6 @@ const Dashboard = () => {
         filename: nameOfFile,
         filetype: typeOfFile,
       })
-    
   }
 
   const Form = props => {
@@ -143,7 +146,7 @@ setHigh(true);
       <button className="btn btn-danger float-end mt-0 mx-2" onClick={() => firebaseConfig.auth().signOut()}>Sign out</button><br /><br />
       <button className="btn btn-danger float-end mt-0 mx-2" onClick={(e) =>{setchange(1)}}>ChangePassword</button>
       <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{setchange(2)}}>Show List</button><br />
-      <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{window.open('https://drive.google.com/uc?export=download&id=1AbhkZCuBuJLiwYwSbNxyL-L0Ub-hqBej')}}>Manual</button>
+      <button className="btn btn-danger mt-0 mx-2" onClick={(e) =>{window.open(manual)}}>Manual</button>
       <div>
         <form onSubmit={handleSubmit}>
           <div id="loginform">

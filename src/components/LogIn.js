@@ -42,7 +42,7 @@ const LogIn = () => {
       })
     } else {
       setpasswordWrong("Check Captcha");
-      console.log("Check google capttcha and try again");
+      console.log("Check google captcha and try again");
     }
 
   };

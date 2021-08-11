@@ -36,6 +36,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (TermsAndCondition) {
+
       if (captcha) {
         const {email, password} = e.target.elements;
         firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value).then((userCredential) => {
@@ -52,14 +53,18 @@ const SignUp = () => {
           }).catch((err) => {
             if (err.message === "The email address is badly formatted.") {
               alert(err.message);
+              console.log(err.message);
             } else {
               alert(err.message);
+              console.log(err.message);
             }
           })
         }).catch((err) => {
           if (err.message === "Password should be at least 6 characters") {
             alert(err.message);
+            console.log(alert.message);
           } else if (err.message === "The email address is already in use by another account.") {
+            console.log("User already exist");
             alert(err.message);
             alreadyUserExists(true);
           } else {
@@ -68,9 +73,11 @@ const SignUp = () => {
         })
       } else {
         setCaptchaWrong("Check Captcha");
+        console.log("Check the Captcha");
       }
     } else {
       setCaptchaWrong("Agree Terms andCondition.");
+      console.log("Check the Terms And Condition");
     }
   };
   const callBack = () => {}

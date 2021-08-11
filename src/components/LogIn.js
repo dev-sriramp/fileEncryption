@@ -4,8 +4,8 @@ import {AuthContext} from "./Auth";
 import firebaseConfig from "../config.js";
 import Recaptcha from "react-recaptcha";
 import './css/LogIn.css';
-// import FormInput from "./FormInput";
 import FormButton, {FormInput, FormHeader, OtherComponents} from "./FormButton";
+
 const manual = "https://raw.githubusercontent.com/uniqueredhat/File-Encryption/main/manual.pdf";
 
 const Form = () => {
@@ -30,14 +30,19 @@ const LogIn = () => {
   const [passwordWrong, setpasswordWrong] = useState(null);
   const [captcha, setcaptcha] = useState(false);
   const handleSubmit = (e) => {
+    let today = new Date();
+
     e.preventDefault();
     if (captcha) {
+      console.log("Form submitted @", today);
       const {email, password} = e.target.elements;
       firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value).catch(error => {
         setpasswordWrong("Check email or password");
+        console.error("Check Username and password");
       })
     } else {
       setpasswordWrong("Check Captcha");
+      console.log("Check google capttcha and try again");
     }
 
   };

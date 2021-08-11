@@ -71,6 +71,7 @@ const Dashboard = () => {
   const handleSubmit = (e) => {
     if (type === "Encrypt") {
       e.preventDefault();
+      console.log("Encrypting section");
       try {
         let {file, password} = e.target.elements;
         file = file.files[0];
@@ -86,6 +87,7 @@ const Dashboard = () => {
             reader.readAsDataURL(file);
           } catch  {
             alert("Enter Valid Password");
+            console("Enter a valid password")
           }
         } else {
           alert('Please choose files smaller than 2mb.\n otherwise you may crash your browser.');
@@ -96,6 +98,7 @@ const Dashboard = () => {
       }
     } else if (type === "Decrypt") {
       e.preventDefault();
+      console.log("Decrypting section");
       try {
         let {file, password} = e.target.elements;
         file = file.files[0];

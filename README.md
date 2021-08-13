@@ -1,6 +1,6 @@
 #Live Website:
 
-https://fileencryption.netlify.app/Dashboard
+fileencryption.netlify.app
 
 
 # Getting Started with Create React App

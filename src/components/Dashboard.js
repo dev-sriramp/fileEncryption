@@ -79,6 +79,8 @@ const Dashboard = () => {
           try {
             let reader = new FileReader();
             reader.onload = function(e) {
+              console.log(file);
+              console.log(e.target.result);
               let encrypted = CryptoJS.AES.encrypt(e.target.result, password.value);
               setHrefOfFile('data:application/octet-stream,' + encrypted);
               setDownload(file.name + '.encrypted');
